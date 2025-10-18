@@ -1,8 +1,8 @@
         // 定義曲目資料陣列（需要加入 MP3 檔案路徑）
         const tracks = [
-            { id: 1, title: "Track 01", duration: "", trackNumber: 1, src: "audio/HC2E-DSB-Level3-Track01.mp3"},
-            { id: 2, title: "Track 02", duration: "", trackNumber: 2, src: "audio/HC2E-DSB-Level3-Track02.mp3"},
-            { id: 3, title: "Track 03", duration: "", trackNumber: 3, src: "audio/HC2E-DSB-Level3-Track03.mp3"}
+            { id: 1, title: "Track 01", duration: "", trackNumber: 55, src: "audio/HC2E-DSB-Level3-Track01.mp3"},
+            { id: 2, title: "Track 02", duration: "", trackNumber: 12, src: "audio/HC2E-DSB-Level3-Track02.mp3"},
+            { id: 3, title: "Track 03", duration: "", trackNumber: 13, src: "audio/HC2E-DSB-Level3-Track03.mp3"}
         ];
         // 建立 Audio 物件
         let audio = new Audio();
@@ -18,16 +18,21 @@
                 const li = document.createElement('li');
                 li.className = 'track-item';
                 li.dataset.trackId = track.id;
-                li.dataset.duration = track.duration;
-                li.dataset.trackNumber = track.trackNumber;
+                //li.dataset.duration = track.duration;
+                //li.dataset.trackNumber = track.trackNumber;
                 li.dataset.index = index; // 加入索引
-                        
                 li.innerHTML = `
+                    <div class="track-icon"><i class="fas fa-music"></i></div>
+                    <div class="track-title">${track.title}</div>
+                   
+                    <div class="track-play-btn"><i class="fas fa-play"></i></div>
+                `;        
+                /* li.innerHTML = `
                     <div class="track-icon"><i class="fas fa-music"></i></div>
                     <div class="track-title">${track.title}</div>
                     <div class="track-duration">${track.duration || "0:00"}</div>
                     <div class="track-play-btn"><i class="fas fa-play"></i></div>
-                `;
+                `; */
                 // 點擊曲目時播放
                 li.addEventListener('click', () => {
                     playTrack(index);
