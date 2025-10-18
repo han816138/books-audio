@@ -198,14 +198,20 @@ main {
 /* Track List */
 .track-list-container {
     border: 1px solid #ccc;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
+    margin-right: auto;  /* 讓子元素靠左 */
+    margin-left: 0;
     overflow: hidden;
+    max-height: 300px;       /* 最大高度 */
+    overflow-y: auto;        /* 超過時顯示捲軸 */
 }
+f
 
 .track-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    
 }
 
 .track-item {
@@ -265,6 +271,7 @@ main {
     opacity: 1; /* Show on hover */
 }
 
+
 /* Color coding for track items (based on the original image) */
 .track-item:nth-child(1) { border-left: 5px solid #ffcc66; /* Orange/Yellow */ }
 .track-item:nth-child(2) { border-left: 5px solid #cc66ff; /* Purple */ }
@@ -281,7 +288,41 @@ main {
 .track-item:nth-child(13) { border-left: 5px solid #ff99cc; /* Lavender */ }
 .track-item:nth-child(14) { border-left: 5px solid #99ccff; /* Sky Blue */ }
 .track-item:nth-child(15) { border-left: 5px solid #ccff66; /* Yellow Green */ }
-
+.track-item:nth-child(16) { border-left: 5px solid #ffcc66; /* Orange/Yellow */ }
+.track-item:nth-child(17) { border-left: 5px solid #cc66ff; /* Purple */ }
+.track-item:nth-child(18) { border-left: 5px solid #66ffcc; /* Mint Green */ }
+.track-item:nth-child(19) { border-left: 5px solid #ff66cc; /* Pink */ }
+.track-item:nth-child(20) { border-left: 5px solid #66ccff; /* Blue */ }
+.track-item:nth-child(21) { border-left: 5px solid #ff9966; /* Peach */ }
+.track-item:nth-child(22) { border-left: 5px solid #99ff66; /* Lime Green */ }
+.track-item:nth-child(23) { border-left: 5px solid #ff6699; /* Rose */ }
+.track-item:nth-child(24) { border-left: 5px solid #6699ff; /* Light Blue */ }
+.track-item:nth-child(25) { border-left: 5px solid #ffcc99; /* Light Orange */ }
+.track-item:nth-child(26) { border-left: 5px solid #9966ff; /* Darker Purple */ }
+.track-item:nth-child(27) { border-left: 5px solid #66ff99; /* Bright Green */ }
+.track-item:nth-child(28) { border-left: 5px solid #ff99cc; /* Lavender */ }
+.track-item:nth-child(29) { border-left: 5px solid #99ccff; /* Sky Blue */ }
+.track-item:nth-child(30) { border-left: 5px solid #ccff66; /* Yellow Green */ }
+.track-item:nth-child(31) { border-left: 5px solid #ffcc66; /* Orange/Yellow */ }
+.track-item:nth-child(32) { border-left: 5px solid #cc66ff; /* Purple */ }
+.track-item:nth-child(33) { border-left: 5px solid #66ffcc; /* Mint Green */ }
+.track-item:nth-child(34) { border-left: 5px solid #ff66cc; /* Pink */ }
+.track-item:nth-child(35) { border-left: 5px solid #66ccff; /* Blue */ }
+.track-item:nth-child(36) { border-left: 5px solid #ff9966; /* Peach */ }
+.track-item:nth-child(37) { border-left: 5px solid #99ff66; /* Lime Green */ }
+.track-item:nth-child(38) { border-left: 5px solid #ff6699; /* Rose */ }
+.track-item:nth-child(39) { border-left: 5px solid #6699ff; /* Light Blue */ }
+.track-item:nth-child(40) { border-left: 5px solid #ffcc99; /* Light Orange */ }
+.track-item:nth-child(41) { border-left: 5px solid #9966ff; /* Darker Purple */ }
+.track-item:nth-child(42) { border-left: 5px solid #66ff99; /* Bright Green */ }
+.track-item:nth-child(43) { border-left: 5px solid #ff99cc; /* Lavender */ }
+.track-item:nth-child(44) { border-left: 5px solid #99ccff; /* Sky Blue */ }
+.track-item:nth-child(45) { border-left: 5px solid #ccff66; /* Yellow Green */ }
+.track-item:nth-child(46) { border-left: 5px solid #ffcc66; /* Orange/Yellow */ }
+.track-item:nth-child(47) { border-left: 5px solid #cc66ff; /* Purple */ }
+.track-item:nth-child(48) { border-left: 5px solid #66ffcc; /* Mint Green */ }
+.track-item:nth-child(49) { border-left: 5px solid #ff66cc; /* Pink */ }
+.track-item:nth-child(50) { border-left: 5px solid #ffcc99; /* Light Orange */ }
 .track-list .hidden {
     display: none;
 }
