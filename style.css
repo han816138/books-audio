@@ -1,0 +1,307 @@
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Light gray background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+/* Header Section */
+header {
+    background-color: #7c0214; /* Light blue/cyan color from the original */
+    padding: 20px;
+    color: #333;
+    border-radius: 5px 5px 0 0;
+}
+
+.header-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.book-cover {
+    width: 100px; /* Approximate size */
+    height: auto;
+    margin-right: 20px;
+    border: 1px solid #ccc; /* Border around the book cover */
+}
+
+.title-links {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 0 0 10px 0;
+    color: #fff; /* White text for the main title */
+}
+
+.links a {
+    display: inline-block;
+    background-color: #fff;
+    color: #333;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    border: 1px solid #ccc;
+}
+
+/* Tabs Section */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px; /* Overlap with the header slightly */
+}
+
+.tab-btn {
+    flex-grow: 1;
+    max-width: 50%;
+    padding: 10px 0;
+    border: none;
+    background-color: #ccc; /* Gray for inactive tab */
+    color: #333;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 10px 10px 0 0;
+    margin: 0 1px;
+}
+
+.tab-btn:first-child {
+    border-right: none;
+}
+
+.tab-btn.active {
+    background-color: #fff; /* White for active tab */
+    color: #66ccff; /* Blue text for active tab */
+    border-bottom: 2px solid #fff; /* Hide the bottom border to blend with the main section */
+}
+
+/* Main Content and Player Section */
+main {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 0 0 5px 5px;
+}
+
+.player-section {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9; /* Light background for the player area */
+}
+
+.audio-player {
+    background-color: #e6f7ff; /* Lighter blue background for the player */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.controls-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.play-btn {
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-right: 15px;
+    color: #333;
+}
+
+.progress-bar-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+
+.progress-bar {
+    flex-grow: 1;
+    margin: 0 10px;
+    height: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #66ccff;
+    border-radius: 50%;
+}
+
+.volume-btn, .menu-btn {
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #333;
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    padding: 5px 0;
+}
+
+.playback-mode input[type="radio"] {
+    margin-right: 5px;
+}
+
+.playback-mode label {
+    margin-right: 15px;
+}
+
+.playback-speed span {
+    margin-right: 10px;
+}
+
+.speed-btn {
+    padding: 3px 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.speed-btn.active {
+    background-color: #66ccff;
+    color: #fff;
+    border-color: #66ccff;
+}
+
+/* Track List */
+.track-list-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.track-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.track-item::after {
+    content: attr(data-track-number);
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: #ff6699;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.track-item:hover {
+    background-color: #f0f0f0;
+}
+
+.track-icon {
+    margin-right: 15px;
+    color: #66ccff;
+}
+
+.track-title {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+.track-duration {
+    font-size: 0.9em;
+    color: #555;
+    background-color: #e0f0ff; /* Light blue background for duration */
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-right: 15px;
+}
+
+.track-play-btn {
+    color: #66ccff;
+    font-size: 1.1em;
+    opacity: 0; /* Hide by default */
+    transition: opacity 0.2s;
+}
+
+.track-item:hover .track-play-btn {
+    opacity: 1; /* Show on hover */
+}
+
+/* Color coding for track items (based on the original image) */
+.track-item:nth-child(1) { border-left: 5px solid #ffcc66; /* Orange/Yellow */ }
+.track-item:nth-child(2) { border-left: 5px solid #cc66ff; /* Purple */ }
+.track-item:nth-child(3) { border-left: 5px solid #66ffcc; /* Mint Green */ }
+.track-item:nth-child(4) { border-left: 5px solid #ff66cc; /* Pink */ }
+.track-item:nth-child(5) { border-left: 5px solid #66ccff; /* Blue */ }
+.track-item:nth-child(6) { border-left: 5px solid #ff9966; /* Peach */ }
+.track-item:nth-child(7) { border-left: 5px solid #99ff66; /* Lime Green */ }
+.track-item:nth-child(8) { border-left: 5px solid #ff6699; /* Rose */ }
+.track-item:nth-child(9) { border-left: 5px solid #6699ff; /* Light Blue */ }
+.track-item:nth-child(10) { border-left: 5px solid #ffcc99; /* Light Orange */ }
+.track-item:nth-child(11) { border-left: 5px solid #9966ff; /* Darker Purple */ }
+.track-item:nth-child(12) { border-left: 5px solid #66ff99; /* Bright Green */ }
+.track-item:nth-child(13) { border-left: 5px solid #ff99cc; /* Lavender */ }
+.track-item:nth-child(14) { border-left: 5px solid #99ccff; /* Sky Blue */ }
+.track-item:nth-child(15) { border-left: 5px solid #ccff66; /* Yellow Green */ }
+
+.track-list .hidden {
+    display: none;
+}
+
+/* Placeholder for the book cover image */
+.book-cover {
+    /* The original image is not available, so we'll use a placeholder */
+    background-color: #f0f8ff;
+    display: block;
+    text-align: center;
+    line-height: 100px;
+    color: #333;
+    font-size: 0.8em;
+    border: 1px solid #ccc;
+    width: 100px;
+    height: 140px; /* Adjusted height to better match the aspect ratio */
+    object-fit: cover;
+}
+
+/* Utility class to hide elements */
+.hidden {
+    display: none !important;
+}
