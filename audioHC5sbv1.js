@@ -1,0 +1,230 @@
+        // 定義曲目資料陣列（需要加入 MP3 檔案路徑）
+        const tracks = [
+            { id: 2, title: "Track 02", duration: "", src: "audioHC5sbv1/HC_L5_U01_002.mp3"},
+            { id: 3, title: "Track 03", duration: "", src: "audioHC5sbv1/HC_L5_U01_003.mp3"},
+            { id: 4, title: "Track 04", duration: "", src: "audioHC5sbv1/HC_L5_U01_004.mp3"},
+            { id: 5, title: "Track 05", duration: "", src: "audioHC5sbv1/HC_L5_U01_005.mp3"},
+            { id: 6, title: "Track 06", duration: "", src: "audioHC5sbv1/HC_L5_U01_006.mp3"},
+            { id: 7, title: "Track 07", duration: "", src: "audioHC5sbv1/HC_L5_U01_007.mp3"},
+            { id: 8, title: "Track 08", duration: "", src: "audioHC5sbv1/HC_L5_U01_008.mp3"},
+            { id: 9, title: "Track 09", duration: "", src: "audioHC5sbv1/HC_L5_U01_009.mp3"},
+            { id: 10, title: "Track 10", duration: "", src: "audioHC5sbv1/HC_L5_U02_010.mp3"},
+            { id: 11, title: "Track 11", duration: "", src: "audioHC5sbv1/HC_L5_U02_011.mp3"},
+            { id: 12, title: "Track 12", duration: "", src: "audioHC5sbv1/HC_L5_U02_012.mp3"},
+            { id: 13, title: "Track 13", duration: "", src: "audioHC5sbv1/HC_L5_U02_013.mp3"},
+            { id: 14, title: "Track 14", duration: "", src: "audioHC5sbv1/HC_L5_U02_014.mp3"},
+            { id: 15, title: "Track 15", duration: "", src: "audioHC5sbv1/HC_L5_U02_015.mp3"},
+            { id: 16, title: "Track 16", duration: "", src: "audioHC5sbv1/HC_L5_U03_016.mp3"},
+            { id: 17, title: "Track 17", duration: "", src: "audioHC5sbv1/HC_L5_U03_017.mp3"},
+            { id: 18, title: "Track 18", duration: "", src: "audioHC5sbv1/HC_L5_U03_018.mp3"},
+            { id: 19, title: "Track 19", duration: "", src: "audioHC5sbv1/HC_L5_U03_019.mp3"},
+            { id: 20, title: "Track 20", duration: "", src: "audioHC5sbv1/HC_L5_U03_020.mp3"},
+            { id: 21, title: "Track 21", duration: "", src: "audioHC5sbv1/HC_L5_U03_021.mp3"},
+            { id: 22, title: "Track 22", duration: "", src: "audioHC5sbv1/HC_L5_U04_022.mp3"},
+            { id: 23, title: "Track 23", duration: "", src: "audioHC5sbv1/HC_L5_U04_023.mp3"},
+            { id: 24, title: "Track 24", duration: "", src: "audioHC5sbv1/HC_L5_U04_024.mp3"},
+            { id: 25, title: "Track 25", duration: "", src: "audioHC5sbv1/HC_L5_U04_025.mp3"},
+            { id: 26, title: "Track 26", duration: "", src: "audioHC5sbv1/HC_L5_U04_026.mp3"},
+            { id: 27, title: "Track 27", duration: "", src: "audioHC5sbv1/HC_L5_U04_027.mp3"},
+            { id: 28, title: "Track 28", duration: "", src: "audioHC5sbv1/HC_L5_U05_028.mp3"},
+            { id: 29, title: "Track 29", duration: "", src: "audioHC5sbv1/HC_L5_U05_029.mp3"},
+            { id: 30, title: "Track 30", duration: "", src: "audioHC5sbv1/HC_L5_U05_030.mp3"},
+            { id: 31, title: "Track 31", duration: "", src: "audioHC5sbv1/HC_L5_U05_031.mp3"},
+            { id: 32, title: "Track 32", duration: "", src: "audioHC5sbv1/HC_L5_U05_032.mp3"},
+            { id: 33, title: "Track 33", duration: "", src: "audioHC5sbv1/HC_L5_U05_033.mp3"},
+            { id: 34, title: "Track 34", duration: "", src: "audioHC5sbv1/HC_L5_U06_034.mp3"},
+            { id: 35, title: "Track 35", duration: "", src: "audioHC5sbv1/HC_L5_U06_035.mp3"},
+            { id: 36, title: "Track 36", duration: "", src: "audioHC5sbv1/HC_L5_U06_036.mp3"},
+            { id: 37, title: "Track 37", duration: "", src: "audioHC5sbv1/HC_L5_U06_037.mp3"},
+            { id: 38, title: "Track 38", duration: "", src: "audioHC5sbv1/HC_L5_U06_038.mp3"},
+            { id: 39, title: "Track 39", duration: "", src: "audioHC5sbv1/HC_L5_U06_039.mp3"},
+            { id: 40, title: "Track 40", duration: "", src: "audioHC5sbv1/HC_L5_U07_040.mp3"},
+            { id: 41, title: "Track 41", duration: "", src: "audioHC5sbv1/HC_L5_U07_041.mp3"},
+            { id: 42, title: "Track 42", duration: "", src: "audioHC5sbv1/HC_L5_U07_042.mp3"},
+            { id: 43, title: "Track 43", duration: "", src: "audioHC5sbv1/HC_L5_U07_043.mp3"},
+            { id: 44, title: "Track 44", duration: "", src: "audioHC5sbv1/HC_L5_U07_044.mp3"},
+            { id: 45, title: "Track 45", duration: "", src: "audioHC5sbv1/HC_L5_U07_045.mp3"},
+            { id: 46, title: "Track 46", duration: "", src: "audioHC5sbv1/HC_L5_U08_046.mp3"},
+            { id: 47, title: "Track 47", duration: "", src: "audioHC5sbv1/HC_L5_U08_047.mp3"},
+            { id: 48, title: "Track 48", duration: "", src: "audioHC5sbv1/HC_L5_U08_048.mp3"},
+            { id: 49, title: "Track 49", duration: "", src: "audioHC5sbv1/HC_L5_U08_049.mp3"},
+            { id: 50, title: "Track 50", duration: "", src: "audioHC5sbv1/HC_L5_U08_050.mp3"},
+            { id: 51, title: "Track 51", duration: "", src: "audioHC5sbv1/HC_L5_U08_051.mp3"}
+        ];
+        //alert("請點選曲目列表中的曲目以播放音訊。");
+        // 建立 Audio 物件
+        let audio = new Audio();
+        let currentTrackIndex = -1;
+        
+        // 動態產生曲目列表的函數
+        function generateTrackList(tracksArray) {
+            const trackListContainer = document.getElementById('cd1-tracks');
+            // 清空現有內容
+            trackListContainer.innerHTML = '';
+            // 遍歷陣列並產生每個曲目項目
+            tracksArray.forEach((track,index) => {
+                const li = document.createElement('li');
+                li.className = 'track-item';
+                li.dataset.trackId = track.id;
+                li.dataset.index = index; // 加入索引
+                li.innerHTML = `
+                    <div class="track-icon"><i class="fas fa-music"></i></div>
+                    <div class="track-title">${track.title}</div>
+                    <div class="track-play-btn"><i class="fas fa-play"></i></div>
+                `;        
+                /* li.innerHTML = `
+                    <div class="track-icon"><i class="fas fa-music"></i></div>
+                    <div class="track-title">${track.title}</div>
+                    <div class="track-duration">${track.duration || "0:00"}</div>
+                    <div class="track-play-btn"><i class="fas fa-play"></i></div>
+                `; */
+                // 點擊曲目時播放
+                li.addEventListener('click', () => {
+                    playTrack(index);
+                });
+                trackListContainer.appendChild(li);
+            });
+        }
+
+        // 播放指定曲目
+        function playTrack(index) {
+            if (index < 0 || index >= tracks.length) return;
+            currentTrackIndex = index;
+            const track = tracks[index];
+            // 設定音訊來源
+            
+            audio.src = track.src;
+            audio.load();
+            audio.play();
+    
+            // 更新 UI
+            updatePlayingUI(index);
+        }
+
+        // 更新播放中的 UI
+        function updatePlayingUI(index) {
+            
+            const trackItems = document.querySelectorAll('.track-item');
+            const playBtn = document.querySelector('.play-btn');
+    
+            // 移除所有 playing 狀態
+            trackItems.forEach(item => {
+                item.classList.remove('playing');
+                const icon = item.querySelector('.track-play-btn i');
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+            });
+    
+            // 設定當前播放曲目
+            if (index >= 0) {
+                const currentItem = trackItems[index];
+                currentItem.classList.add('playing');
+                const icon = currentItem.querySelector('.track-play-btn i');
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+            }
+    
+            // 更新主播放按鈕
+            playBtn.classList.remove('fa-play');
+            playBtn.classList.add('fa-pause');
+        }
+
+        // 頁面載入後執行
+document.addEventListener('DOMContentLoaded', function() {
+    generateTrackList(tracks);
+    
+    const playBtn = document.querySelector('.play-btn');
+    const progressBar = document.querySelector('.progress-bar');
+    const currentTimeSpan = document.querySelector('.current-time');
+    const durationSpan = document.querySelector('.duration');
+    const speedButtons = document.querySelectorAll('.speed-btn');
+    const volumeBtn = document.querySelector('.volume-btn');
+    const playbackModes = document.querySelectorAll('input[name="playback-mode"]');
+    
+    // 主播放/暫停按鈕
+    playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            if (currentTrackIndex === -1) {
+                playTrack(0); // 如果沒有選曲目，播放第一首
+            } else {
+                audio.play();
+                playBtn.classList.remove('fa-play');
+                playBtn.classList.add('fa-pause');
+            }
+        } else {
+            audio.pause();
+            playBtn.classList.remove('fa-pause');
+            playBtn.classList.add('fa-play');
+        }
+    });
+    
+    // 音訊載入完成後更新總時長
+    audio.addEventListener('loadedmetadata', () => {
+        const duration = formatTime(audio.duration);
+        durationSpan.textContent = duration;
+        progressBar.max = Math.floor(audio.duration);
+    });
+    
+    // 播放時更新進度條和時間
+    audio.addEventListener('timeupdate', () => {
+        currentTimeSpan.textContent = formatTime(audio.currentTime);
+        progressBar.value = Math.floor(audio.currentTime);
+    });
+    
+    // 進度條拖動
+    progressBar.addEventListener('input', (e) => {
+        audio.currentTime = e.target.value;
+    });
+    
+    // 音訊播放結束
+    audio.addEventListener('ended', () => {
+        const singleLoop = document.getElementById('single-loop').checked;
+        
+        if (singleLoop) {
+            // 單曲循環
+            audio.currentTime = 0;
+            audio.play();
+        } else {
+            // 全部播放：播放下一首
+            if (currentTrackIndex < tracks.length - 1) {
+                playTrack(currentTrackIndex + 1);
+            } else {
+                // 播放完畢，回到第一首
+                playTrack(0);
+            }
+        }
+    });
+    
+    // 播放速度控制
+    speedButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            speedButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // 設定播放速度：慢速 0.75x, 正常 1x, 快速 1.5x
+            const speeds = [0.75, 1, 1.5];
+            audio.playbackRate = speeds[index];
+        });
+    });
+    
+    // 音量控制（靜音/取消靜音）
+    volumeBtn.addEventListener('click', () => {
+        if (audio.muted) {
+            audio.muted = false;
+            volumeBtn.classList.remove('fa-volume-mute');
+            volumeBtn.classList.add('fa-volume-up');
+        } else {
+            audio.muted = true;
+            volumeBtn.classList.remove('fa-volume-up');
+            volumeBtn.classList.add('fa-volume-mute');
+        }
+    });
+});
+
+// 時間格式化函數（秒數轉為 MM:SS）
+function formatTime(seconds) {
+    if (isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
