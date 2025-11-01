@@ -202,10 +202,10 @@ main {
     margin-right: auto;  /* 讓子元素靠左 */
     margin-left: 0;
     overflow: hidden;
-    max-height: 900px;       /* 最大高度 */
+    /*max-height: 2500px;*/       /* 最大高度 */
     overflow-y: auto;        /* 超過時顯示捲軸 */
 }
-f
+
 
 .track-list {
     list-style: none;

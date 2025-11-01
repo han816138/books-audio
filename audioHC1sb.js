@@ -81,6 +81,7 @@
                 li.addEventListener('click', () => {
                     playTrack(index);
                 });
+                console.log('li='+li.innerHTML);
                 trackListContainer.appendChild(li);
             });
         }
