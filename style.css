@@ -160,7 +160,7 @@ main {
     color: #333;
 }
 
-.settings-row {
+.track-list-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -202,7 +202,7 @@ main {
     margin-right: auto;  /* 讓子元素靠左 */
     margin-left: 0;
     overflow: hidden;
-    max-height: 300px;       /* 最大高度 */
+    max-height: 900px;       /* 最大高度 */
     overflow-y: auto;        /* 超過時顯示捲軸 */
 }
 f
