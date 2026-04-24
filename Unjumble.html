@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>句型重組遊戲</title>
+  <style>
+    :root {
+      --bg: #d8edf8;
+      --panel: #f6f4f2;
+      --panel-border: #cfcfcf;
+      --accent: #2d6f8e;
+      --text: #333333;
+      --muted: #7c7c7c;
+      --tile: #ffffff;
+      --tile-border: #9a9a9a;
+      --success: #18794e;
+      --danger: #b42318;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.4)),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .page {
+      width: min(1100px, calc(100vw - 24px));
+      margin: 18px auto;
+      background: var(--panel);
+      border: 1px solid #d8d8d8;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .title-block h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      color: var(--accent);
+    }
+
+    .title-block p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .toggle-btn {
+      border: 1px solid #b8c9d2;
+      background: white;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .editor {
+      display: none;
+      margin-bottom: 18px;
+      padding: 16px;
+      border: 1px solid #d8dde1;
+      border-radius: 14px;
+      background: #fcfcfc;
+    }
+
+    .editor.open {
+      display: block;
+    }
+
+    .editor h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .editor p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      resize: vertical;
+      border-radius: 12px;
+      border: 1px solid #cad0d4;
+      padding: 14px;
+      font: 15px/1.6 Consolas, "Courier New", monospace;
+      background: white;
+    }
+
+    .editor-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      background: var(--accent);
+      color: white;
+    }
+
+    button.secondary {
+      background: #e8eef1;
+      color: #234150;
+    }
+
+    .game-card {
+      border: 1px solid var(--panel-border);
+      background: #fffdfc;
+      padding: 24px;
+    }
+
+    .prompt-box {
+      min-height: 210px;
+      border: 5px solid #111;
+      margin: 10px auto 28px;
+      width: min(92%, 920px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: white;
+    }
+
+    .prompt-text {
+      font-size: clamp(2rem, 6vw, 5rem);
+      line-height: 1.1;
+      text-align: center;
+      color: #000;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+      word-break: break-word;
+    }
+
+    .answer-zone,
+    .word-bank {
+      border-top: 4px solid #d7d7d7;
+      padding: 20px 8px 6px;
+      min-height: 90px;
+    }
+
+    .zone-label {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .word-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      min-height: 48px;
+    }
+
+    .word-tile {
+      border: 0;
+      background: transparent;
+      color: #8a8a8a;
+      font-size: clamp(1.2rem, 3vw, 3.2rem);
+      font-style: italic;
+      line-height: 1;
+      padding: 4px 8px;
+      border-bottom: 3px solid transparent;
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .word-tile:hover,
+    .word-tile:focus-visible {
+      outline: none;
+      background: #f4f7f8;
+      border-bottom-color: #8cb3c4;
+    }
+
+    .answer-zone .word-tile {
+      color: #3b3b3b;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      border-top: 4px solid #d7d7d7;
+      padding-top: 16px;
+      margin-top: 12px;
+    }
+
+    .left-controls,
+    .right-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .progress {
+      font-size: clamp(1.2rem, 2.5vw, 2.1rem);
+      color: #404040;
+      min-width: 110px;
+      text-align: center;
+    }
+
+    .feedback {
+      margin-top: 14px;
+      min-height: 28px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .feedback.success {
+      color: var(--success);
+    }
+
+    .feedback.error {
+      color: var(--danger);
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 14px;
+      }
+
+      .game-card {
+        padding: 14px;
+      }
+
+      .prompt-box {
+        min-height: 160px;
+        width: 100%;
+      }
+
+      .controls {
+        justify-content: center;
+      }
+
+      .left-controls,
+      .right-controls {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="title-block">
+        <h1>中文提示 + 英文句型重組</h1>
+        <p>可自行輸入中文內容，學生點擊單字來排列英文句子。</p>
+      </div>
+      <button id="toggleEditor" class="toggle-btn" type="button">顯示題庫編輯</button>
+    </div>
+
+    <section id="editor" class="editor">
+      <h2>題庫格式</h2>
+      <p>每一行一題，格式是：中文提示 | 正確英文句子。英文會自動拆成單字並打亂。</p>
+      <textarea id="datasetInput">你應該量量體溫 | You should take your temperature.
+我喜歡在公園打籃球 | I like playing basketball in the park.
+她現在正在做作業 | She is doing her homework now.
+我們明天要去動物園 | We are going to the zoo tomorrow.
+請把窗戶打開 | Please open the window.</textarea>
+      <div class="editor-actions">
+        <button id="loadQuestions" type="button">載入這些題目</button>
+        <button id="resetProgress" class="secondary" type="button">重設進度</button>
+      </div>
+    </section>
+
+    <section class="game-card">
+      <div class="prompt-box">
+        <div id="promptText" class="prompt-text"></div>
+      </div>
+
+      <div class="answer-zone">
+        <p class="zone-label">作答區</p>
+        <div id="answerList" class="word-list" aria-live="polite"></div>
+      </div>
+
+      <div class="word-bank">
+        <p class="zone-label">點下方單字加入句子，點上方單字可放回</p>
+        <div id="bankList" class="word-list"></div>
+      </div>
+
+      <div class="controls">
+        <div class="left-controls">
+          <button id="checkBtn" type="button">檢查答案</button>
+          <button id="clearBtn" class="secondary" type="button">清空重排</button>
+          <button id="showBtn" class="secondary" type="button">顯示答案</button>
+        </div>
+
+        <div id="progressText" class="progress">1 / 1</div>
+
+        <div class="right-controls">
+          <button id="prevBtn" class="secondary" type="button">上一題</button>
+          <button id="nextBtn" type="button">下一題</button>
+        </div>
+      </div>
+
+      <div id="feedback" class="feedback"></div>
+      <div class="footer-note">
+        句子拆字方式以空白為主，所以英文請用正常空格輸入，例如 <code>You should take your temperature.</code>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const defaultDataset = document.getElementById("datasetInput").value;
+
+    const state = {
+      questions: [],
+      currentIndex: 0
+    };
+
+    const editor = document.getElementById("editor");
+    const toggleEditor = document.getElementById("toggleEditor");
+    const datasetInput = document.getElementById("datasetInput");
+    const promptText = document.getElementById("promptText");
+    const answerList = document.getElementById("answerList");
+    const bankList = document.getElementById("bankList");
+    const feedback = document.getElementById("feedback");
+    const progressText = document.getElementById("progressText");
+
+    function shuffle(items) {
+      const array = [...items];
+      for (let i = array.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function parseDataset(text) {
+      const rows = text
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      const questions = rows.map((row, index) => {
+        const parts = row.split("|");
+        if (parts.length < 2) {
+          throw new Error("第 " + (index + 1) + " 行格式錯誤，請使用：中文 | 英文");
+        }
+
+        const prompt = parts[0].trim();
+        const sentence = parts.slice(1).join("|").trim();
+        const words = sentence.split(/\s+/).filter(Boolean);
+
+        if (!prompt || !sentence || words.length === 0) {
+          throw new Error("第 " + (index + 1) + " 行內容不完整");
+        }
+
+        return {
+          prompt,
+          sentence,
+          words,
+          bank: shuffle(words),
+          answer: []
+        };
+      });
+
+      if (questions.length === 0) {
+        throw new Error("請至少輸入一題");
+      }
+
+      return questions;
+    }
+
+    function renderWordButton(word, onClick) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "word-tile";
+      button.textContent = word;
+      button.addEventListener("click", onClick);
+      return button;
+    }
+
+    function updateFeedback(message, type = "") {
+      feedback.textContent = message;
+      feedback.className = "feedback" + (type ? " " + type : "");
+    }
+
+    function renderQuestion() {
+      const question = state.questions[state.currentIndex];
+      if (!question) {
+        promptText.textContent = "沒有題目";
+        answerList.innerHTML = "";
+        bankList.innerHTML = "";
+        progressText.textContent = "0 / 0";
+        return;
+      }
+
+      promptText.textContent = question.prompt;
+      progressText.textContent = (state.currentIndex + 1) + " / " + state.questions.length;
+
+      answerList.innerHTML = "";
+      bankList.innerHTML = "";
+
+      question.answer.forEach((word, index) => {
+        answerList.appendChild(renderWordButton(word, function () {
+          question.bank.push(question.answer.splice(index, 1)[0]);
+          renderQuestion();
+          updateFeedback("");
+        }));
+      });
+
+      question.bank.forEach((word, index) => {
+        bankList.appendChild(renderWordButton(word, function () {
+          question.answer.push(question.bank.splice(index, 1)[0]);
+          renderQuestion();
+          updateFeedback("");
+        }));
+      });
+    }
+
+    function currentQuestion() {
+      return state.questions[state.currentIndex];
+    }
+
+    function loadDataset(text, keepIndex = false) {
+      state.questions = parseDataset(text);
+      state.currentIndex = keepIndex ? Math.min(state.currentIndex, state.questions.length - 1) : 0;
+      updateFeedback("");
+      renderQuestion();
+    }
+
+    toggleEditor.addEventListener("click", function () {
+      editor.classList.toggle("open");
+      toggleEditor.textContent = editor.classList.contains("open")
+        ? "隱藏題庫編輯"
+        : "顯示題庫編輯";
+    });
+
+    document.getElementById("loadQuestions").addEventListener("click", function () {
+      try {
+        loadDataset(datasetInput.value);
+        updateFeedback("題庫已更新。", "success");
+      } catch (error) {
+        updateFeedback(error.message, "error");
+      }
+    });
+
+    document.getElementById("resetProgress").addEventListener("click", function () {
+      datasetInput.value = defaultDataset;
+      try {
+        loadDataset(defaultDataset);
+        updateFeedback("已恢復預設題庫。", "success");
+      } catch (error) {
+        updateFeedback(error.message, "error");
+      }
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", function () {
+      const question = currentQuestion();
+      if (!question) {
+        return;
+      }
+      question.bank = shuffle([...question.bank, ...question.answer]);
+      question.answer = [];
+      renderQuestion();
+      updateFeedback("");
+    });
+
+    document.getElementById("showBtn").addEventListener("click", function () {
+      const question = currentQuestion();
+      if (!question) {
+        return;
+      }
+      question.answer = [...question.words];
+      question.bank = [];
+      renderQuestion();
+      updateFeedback("已顯示正確答案。", "success");
+    });
+
+    document.getElementById("checkBtn").addEventListener("click", function () {
+      const question = currentQuestion();
+      if (!question) {
+        return;
+      }
+
+      const userAnswer = question.answer.join(" ").trim();
+      if (!userAnswer) {
+        updateFeedback("請先完成句子。", "error");
+        return;
+      }
+
+      if (userAnswer === question.sentence) {
+        updateFeedback("答對了。", "success");
+      } else {
+        updateFeedback("還差一點，請再試試看。", "error");
+      }
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", function () {
+      if (state.currentIndex > 0) {
+        state.currentIndex -= 1;
+        renderQuestion();
+        updateFeedback("");
+      }
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", function () {
+      if (state.currentIndex < state.questions.length - 1) {
+        state.currentIndex += 1;
+        renderQuestion();
+        updateFeedback("");
+      }
+    });
+
+    try {
+      loadDataset(defaultDataset);
+    } catch (error) {
+      updateFeedback(error.message, "error");
+    }
+  </script>
+</body>
+</html>
