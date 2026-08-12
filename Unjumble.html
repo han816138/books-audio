@@ -279,17 +279,23 @@
         <h1>中文提示 + 英文句型重組</h1>
         <p>可自行輸入中文內容，學生點擊單字來排列英文句子。</p>
       </div>
-      <button id="toggleEditor" class="toggle-btn" type="button">顯示題庫編輯</button>
+      <button id="toggleEditor"  type="button">顯示題庫編輯</button>
     </div>
 
     <section id="editor" class="editor">
       <h2>題庫格式</h2>
       <p>每一行一題，格式是：中文提示 | 正確英文句子。英文會自動拆成單字並打亂。</p>
-      <textarea id="datasetInput">你應該量量體溫 | You should take your temperature.
-我喜歡在公園打籃球 | I like playing basketball in the park.
-她現在正在做作業 | She is doing her homework now.
-我們明天要去動物園 | We are going to the zoo tomorrow.
-請把窗戶打開 | Please open the window.</textarea>
+      <textarea id="datasetInput">
+        他應該擤鼻子。 | He should blow his nose.
+        她應該留在床上。 | She should stay in bed.
+        他們不應該吃太多。 | They shouldn't eat too much.
+        他應該去看牙醫。 | He should see a dentist.
+        她應該喝些熱茶。 | She should drink some hot tea.
+        你應該量量體溫。 | You should take your temperature.
+        他不該總是忘記帶他的書。 | He shouldn't always forget his books.
+        你有給他甚麼建議? | What's your advice for him?
+        他們不該超速。車子裡有小孩。 | They shouldn't speed. They have kids in their car.
+      </textarea>
       <div class="editor-actions">
         <button id="loadQuestions" type="button">載入這些題目</button>
         <button id="resetProgress" class="secondary" type="button">重設進度</button>
