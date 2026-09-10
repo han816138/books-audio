@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英語教材CD線上聽</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-content">
+                <div class="book-info">
+                    <img src="SF7.jpg" alt="Super Fun 7 封面" class="book-cover">
+                    <div class="title-links">
+                        <h1>Super Fun 7 課本CD線上聽</h1>
+                        <div class="links">
+                            <!--<a href="#" class="link-btn">mp3下載</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- CD Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" id="tab-cd1" onclick="switchTab(1)">CD1</button>
+            <button class="tab-btn" id="tab-cd2" onclick="switchTab(2)">CD2</button>
+        </div>
+
+        <!-- Main Content - Player and Track List -->
+        <main>
+            <div class="player-section">
+                <!-- Custom Audio Player -->
+                <div class="audio-player">
+                    <div class="controls-row">
+                        <i class="fas fa-play play-btn"></i>
+                        <div class="progress-bar-container">
+                            <span class="current-time">0:00</span> / <span class="duration">0:00</span>
+                            <input type="range" class="progress-bar" value="0" min="0" max="100">
+                        </div>
+                        <i class="fas fa-volume-up volume-btn"></i>
+                        <i class="fas fa-ellipsis-v menu-btn"></i>
+                    </div>
+                    <div class="settings-row">
+                        <div class="playback-mode">
+                            <input type="radio" id="single-loop" name="playback-mode" checked>
+                            <label for="single-loop">單曲循環</label>
+                            <input type="radio" id="all-play" name="playback-mode">
+                            <label for="all-play">全部播放</label>
+                        </div>
+                        <div class="playback-speed">
+                            <span>播放速度</span>
+                            <button class="speed-btn">慢速</button>
+                            <button class="speed-btn active">正常</button>
+                            <button class="speed-btn">快速</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track List -->
+                <div class="track-list-container">
+                    <ul class="track-list" id="track-list"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="audioSF7sb.js?v=1.0.0"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "lsp_html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "audioHC1sb.js",
+  "scripts": {
+    "lint:js": "eslint *.js",
+    "lint:html": "htmlhint *.html",
+    "lint": "npm run lint:js && npm run lint:html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/han816138/books-audio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/han816138/books-audio/issues"
+  },
+  "homepage": "https://github.com/han816138/books-audio#readme",
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "globals": "^17.12.0",
+    "htmlhint": "^1.9.2"
+  }
+}

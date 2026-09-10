@@ -53,7 +53,7 @@
         ];
         //alert("請點選曲目列表中的曲目以播放音訊。");
         // 建立 Audio 物件
-        let audio = new Audio();
+        const audio = new Audio();
         let currentTrackIndex = -1;
         
         // 動態產生曲目列表的函數
@@ -139,8 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const durationSpan = document.querySelector('.duration');
     const speedButtons = document.querySelectorAll('.speed-btn');
     const volumeBtn = document.querySelector('.volume-btn');
-    const playbackModes = document.querySelectorAll('input[name="playback-mode"]');
-    
+
     // 主播放/暫停按鈕
     playBtn.addEventListener('click', () => {
         if (audio.paused) {
